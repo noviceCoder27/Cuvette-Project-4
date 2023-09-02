@@ -1,5 +1,6 @@
 let resultOnScreen = result = '0';
 const givenOperators = ['+','-','x','/'];
+let operationWithZero = false
 
 window.onload = () => {
     output();
@@ -7,7 +8,7 @@ window.onload = () => {
 
 const output = () => {
     const outputScreen = document.querySelector('.screen');
-    if (resultOnScreen.charAt(0) === '0' && resultOnScreen.length > 1) {
+    if (!operationWithZero && resultOnScreen.charAt(0) === '0' && resultOnScreen.length > 1) {
         resultOnScreen = resultOnScreen.substring(1);
         result = resultOnScreen;
     }
@@ -155,7 +156,7 @@ const checkCondition = (btn) => {
         resultOnScreen += btn.innerHTML;
         result = resultOnScreen;
         output();
-    }btn
+    }
 }
 
 const buttonFunctionality = () => {
@@ -163,13 +164,19 @@ const buttonFunctionality = () => {
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             if(btn.innerHTML === 'RESET') {
+                operationWithZero = false;
                 reset();
             } else if(btn.innerHTML === 'DEL'){
+                operationWithZero = false;
                 remove();
             } else if(btn.innerHTML === '=') {
-                numeratorZero = false;
                 result = resultOnScreen;
+                operationWithZero = false;
                 performOperation();
+            } else if(resultOnScreen === '0' && (btn.innerHTML === '/' || btn.innerHTML === 'x' || btn.innerHTML === '+' || btn.innerHTML === '.')) {
+                resultOnScreen += btn.innerHTML;
+                operationWithZero = true;
+                output();
             } else {
                 const lastCharacter = result.charAt(result.length -1);
                 if(givenOperators.includes(lastCharacter) && givenOperators.includes(btn.innerHTML)) {
