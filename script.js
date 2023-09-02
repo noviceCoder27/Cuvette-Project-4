@@ -1,6 +1,5 @@
 let resultOnScreen = result = '0';
 const givenOperators = ['+','-','x','/'];
-let numeratorZero = false;
 
 window.onload = () => {
     output();
@@ -8,7 +7,7 @@ window.onload = () => {
 
 const output = () => {
     const outputScreen = document.querySelector('.screen');
-    if (!numeratorZero && resultOnScreen.charAt(0) === '0' && resultOnScreen.length > 1) {
+    if (resultOnScreen.charAt(0) === '0' && resultOnScreen.length > 1) {
         resultOnScreen = resultOnScreen.substring(1);
         result = resultOnScreen;
     }
@@ -111,10 +110,10 @@ const assignAndOperate = (operator) => {
         }
     } 
     if((operator === '+' && result.charAt(leftIndex) === '-') || (operator === '-' && result.charAt(leftIndex) === '+') || (operator === '-' && result.charAt(leftIndex) === '-')) {
-        operator = '-'
+        operator = '-';
         leftIndex--;
     } else if((operator === '+' && result.charAt(rightIndex) === '-') && (operator === '-' && result.charAt(rightIndex) === '+') || (operator === '-' && result.charAt(rightIndex) === '-')) {
-        operator = '-'
+        operator = '-';
         rightIndex++;
     }
     [operand1,lhs] = getLHS(leftIndex);
@@ -154,7 +153,7 @@ const performOperation = () => {
 const checkCondition = (btn) => {
     if(resultOnScreen.length <=6) {
         resultOnScreen += btn.innerHTML;
-        result = resultOnScreen
+        result = resultOnScreen;
         output();
     }btn
 }
@@ -170,12 +169,7 @@ const buttonFunctionality = () => {
             } else if(btn.innerHTML === '=') {
                 numeratorZero = false;
                 result = resultOnScreen;
-                performOperation()
-            } else if(resultOnScreen === '0' && btn.innerHTML === '/') {
-                resultOnScreen += btn.innerHTML;
-                result = resultOnScreen;
-                numeratorZero = true;
-                output();    
+                performOperation();
             } else {
                 const lastCharacter = result.charAt(result.length -1);
                 if(givenOperators.includes(lastCharacter) && givenOperators.includes(btn.innerHTML)) {
