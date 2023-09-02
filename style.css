@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
+:root {
+    --slate: #647299;
+    --slate-dark: #3B4664;
+    --dark-blue: #181F32;
+    --blue-medium: #252D44;
+    --off-white: #EAE3DB;
+    --red: #D13F30;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--slate-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.calculator {
+    min-width: 30vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calculator > h3 {
+    font-size: 130%;
+    margin-bottom: -0.2rem;
+    color: var(--off-white);
+    font-family: 'Segoe UI';
+}
+
+.screen {
+    background-color: var(--dark-blue);
+    height: 12%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    font-size: 2.5rem;
+    color: var(--off-white);
+    letter-spacing: 0.5rem;
+}
+
+
+.buttons {
+    background-color: var(--blue-medium);
+    flex-grow: 1;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    display: grid;
+    font-size: 1.5rem;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1rem;
+}
+
+
+.btn {
+    background-color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.delete {
+    background-color: var(--slate);
+}
+
+.delete, .reset, .result {
+    color: var(--off-white);
+    font-size: 80%;
+}
+
+.reset {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-size: 1.2rem;
+    padding: 0.2rem 0;
+    background-color: var(--slate);
+}
+
+.result {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    font-size: 1.2rem;
+    background-color: var(--red);
+}
