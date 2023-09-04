@@ -132,6 +132,11 @@ const performOperation = () => {
             iterations++;
         } 
     }
+    if(iterations === 0) {
+        resultOnScreen = result;
+        output();
+        return;
+    }
     while(iterations > 0) {
         let count = result.split('-').length - 1;
         if(result.includes('/')) {
